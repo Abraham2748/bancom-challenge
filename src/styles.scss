@@ -1,8 +1,9 @@
-html,
-body {
+html {
+  overflow-x: hidden !important;
   height: 100%;
 }
 body {
   margin: 0;
+  height: 100%;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }

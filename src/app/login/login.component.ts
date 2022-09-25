@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login-mobile.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
 
-  constructor() { }
+  pass = new FormControl('', [Validators.required, Validators.minLength(8)]);
 
-  ngOnInit(): void {
-  }
+  hide = true;
+  constructor() {}
 
+  ngOnInit(): void {}
 }

@@ -8,6 +8,9 @@ import { HomeComponent } from './home/home.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from './login/login.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent],
@@ -17,6 +20,10 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
+    MatCheckboxModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

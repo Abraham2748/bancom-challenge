@@ -49,7 +49,15 @@
         <mat-checkbox color="primary">Remember e-mail</mat-checkbox>
       </div>
       <div class="login-buttons">
-        <button type="submit" mat-flat-button color="primary">Login</button>
+        <button
+          type="submit"
+          mat-flat-button
+          color="primary"
+          [disabled]="email.errors || password.errors"
+          routerLink="../users"
+        >
+          Login
+        </button>
         <button class="google-login" type="button" mat-flat-button>
           <img src="../../assets/home/google.svg" />
           Sign in with Google

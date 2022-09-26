@@ -8,6 +8,9 @@
 }
 
 .nav-container {
+  ul {
+    display: none;
+  }
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -180,6 +183,9 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  .numbers {
+    display: none;
+  }
   .logo-mark {
     width: 32px;
     margin-bottom: 2rem;

@@ -3,7 +3,11 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home-mobile.component.scss', './home-tablet.component.scss'],
+  styleUrls: [
+    './home-mobile.component.scss',
+    './home-tablet.component.scss',
+    './home-desktop.component.scss',
+  ],
 })
 export class HomeComponent implements OnInit {
   lorem =

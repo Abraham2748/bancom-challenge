@@ -1,7 +1,7 @@
 <div class="nav-container">
   <nav>
     <a href="#"> <img src="../../assets/home/logo.svg" alt="" /></a>
-    <ul style="list-style: none; display: none">
+    <ul>
       <li><a href="#">Features</a></li>
       <li><a href="#">Pricing</a></li>
       <li><a href="#">Careers</a></li>
@@ -12,47 +12,53 @@
     <button mat-flat-button color="primary" routerLink="login">Login</button>
     <button mat-flat-button>Sign Up</button>
   </div>
-  <button mat-icon-button (click)="isMenuOpen = !isMenuOpen">
+  <button
+    class="hamburger-menu"
+    mat-icon-button
+    (click)="isMenuOpen = !isMenuOpen"
+  >
     <mat-icon>menu</mat-icon>
   </button>
 </div>
 
-<div>
-  <nav
-    [ngStyle]="{ 'max-height': isMenuOpen ? '240px' : '0' }"
-    class="mobile-menu-container"
-  >
-    <ul>
-      <li><a href="#">Features</a></li>
-      <li><a href="#">Pricing</a></li>
-      <li><a href="#">Careers</a></li>
-      <li><a href="#">Help</a></li>
-    </ul>
-    <div class="auth-buttons">
-      <button mat-flat-button color="primary" routerLink="login">Login</button>
-      <button mat-flat-button>Sign Up</button>
+<nav
+  [ngStyle]="{ 'max-height': isMenuOpen ? '240px' : '0' }"
+  class="mobile-menu-container"
+>
+  <ul>
+    <li><a href="#">Features</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Careers</a></li>
+    <li><a href="#">Help</a></li>
+  </ul>
+  <div class="auth-buttons">
+    <button mat-flat-button color="primary" routerLink="login">Login</button>
+    <button mat-flat-button>Sign Up</button>
+  </div>
+</nav>
+
+<div class="main-container">
+  <div>
+    <div class="header-container">
+      <h1>The easiest way to manage projects</h1>
+      <h2>
+        From the small stuff to the big picture, organizes the work so teams
+        know what to do, why it matters, and how to get it done.
+      </h2>
     </div>
-  </nav>
-</div>
 
-<div class="header-container">
-  <h1>The easiest way to manage projects</h1>
-  <h2>
-    From the small stuff to the big picture, organizes the work so teams know
-    what to do, why it matters, and how to get it done.
-  </h2>
-</div>
+    <div class="cta-container">
+      <button mat-flat-button color="primary">Get Started</button>
+      <button mat-button color="primary">
+        <mat-icon fontIcon="play_circle_outline"></mat-icon>
+        Watch Video
+      </button>
+    </div>
+  </div>
 
-<div class="cta-container">
-  <button mat-flat-button color="primary">Get Started</button>
-  <button mat-button color="primary">
-    <mat-icon fontIcon="play_circle_outline"></mat-icon>
-    Watch Video
-  </button>
-</div>
-
-<div class="phone-container">
-  <img src="../../assets/home/mobile.png" />
+  <div class="phone-container">
+    <img src="../../assets/home/mobile.png" />
+  </div>
 </div>
 
 <div class="features-container">
@@ -103,6 +109,20 @@
         <li><a href="#">News</a></li>
         <li><a href="#">Help</a></li>
         <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <p>© 2021 Landify UI Kit. All rights reserved</p>
+  </div>
+  <div class="numbers">
+    <img class="logo-mark" src="../../assets/home/logo-mark.svg" />
+    <div class="links">
+      <ul>
+        <div class="first-row">
+          <li><a href="#">Contact us</a></li>
+        </div>
+        <li><a href="#">Whatsapp</a></li>
+        <li><a href="#">978 566 567</a></li>
+        <li><a href="#">967 567 565</a></li>
       </ul>
     </div>
     <p>© 2021 Landify UI Kit. All rights reserved</p>

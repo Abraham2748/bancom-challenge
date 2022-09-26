@@ -50,5 +50,14 @@ form {
     button {
       padding: 0.25rem 0;
     }
+
+    .google-login {
+      background-color: #2d3748;
+      color: white;
+      img {
+        width: 20px;
+        margin-right: 0.25rem;
+      }
+    }
   }
 }

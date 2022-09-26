@@ -24,6 +24,10 @@ form {
 
   mat-form-field {
     width: 100%;
+
+    .eye {
+      cursor: pointer;
+    }
   }
 
   .forgot-pass {

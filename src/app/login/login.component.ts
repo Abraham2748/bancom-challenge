@@ -7,12 +7,12 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login-mobile.component.scss', './login-tablet.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  email = new FormControl('', [Validators.required, Validators.email]);
 
-  pass = new FormControl('', [Validators.required, Validators.minLength(8)]);
+  password = new FormControl('', [
+    Validators.required,
+    Validators.minLength(8),
+  ]);
 
   hide = true;
   constructor() {}

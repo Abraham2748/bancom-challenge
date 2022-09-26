@@ -12,6 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './users/users.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent, UsersComponent],
@@ -25,6 +26,7 @@ import { UsersComponent } from './users/users.component';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

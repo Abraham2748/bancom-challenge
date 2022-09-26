@@ -1,0 +1,68 @@
+<div class="login-container">
+  <div class="side-img-container">
+    <img src="../../assets/login/side-picture.png" />
+  </div>
+  <div class="form-container">
+    <form>
+      <div>
+        <div class="title">
+          <span>Welcome</span>
+          <h1>Log in</h1>
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            [formControl]="email"
+            placeholder="Ex. pat@example.com"
+          />
+          <mat-error
+            *ngIf="email.hasError('email') && !email.hasError('required')"
+          >
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="email.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            [formControl]="password"
+          />
+          <mat-icon class="eye" matSuffix (click)="hide = !hide">{{
+            hide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+          <mat-error *ngIf="password.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="password.hasError('minlength')">
+            Password should be at least <strong>8</strong> characters
+          </mat-error>
+        </mat-form-field>
+
+        <span class="forgot-pass">Forgot your password?</span>
+        <mat-checkbox color="primary">Remember e-mail</mat-checkbox>
+      </div>
+      <div class="login-buttons">
+        <button
+          type="submit"
+          mat-flat-button
+          color="primary"
+          [disabled]="email.errors || password.errors"
+          routerLink="../users"
+        >
+          Login
+        </button>
+        <button class="google-login" type="button" mat-flat-button>
+          <img src="../../assets/home/google.svg" />
+          Sign in with Google
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

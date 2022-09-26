@@ -1,0 +1,54 @@
+@media screen and (min-width: 768px) {
+  .login-container {
+    display: flex;
+  }
+  .side-img-container {
+    display: flex;
+    width: 50vw;
+    height: 100vh;
+    overflow: hidden;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .form-container {
+    height: 100vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  form {
+    width: 100%;
+    max-height: 560px;
+    max-width: 360px;
+    box-sizing: border-box;
+
+    .title {
+      margin-top: 2rem;
+
+      h1 {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    .forgot-pass {
+      font-size: 0.9rem;
+    }
+
+    mat-checkbox {
+      margin: 2rem 0;
+      font-size: 0.9rem;
+    }
+
+    .login-buttons {
+      margin-bottom: 4rem;
+
+      button {
+        padding: 0.3rem 0;
+      }
+    }
+  }
+}

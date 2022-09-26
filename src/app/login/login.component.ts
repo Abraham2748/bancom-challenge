@@ -4,7 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login-mobile.component.scss'],
+  styleUrls: ['./login-mobile.component.scss', './login-tablet.component.scss'],
 })
 export class LoginComponent implements OnInit {
   emailFormControl = new FormControl('', [

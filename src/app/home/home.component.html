@@ -8,9 +8,9 @@
       <li><a href="#">Help</a></li>
     </ul>
   </nav>
-  <div style="display: none">
-    <button>Login</button>
-    <button>Sign Up</button>
+  <div class="auth-buttons">
+    <button mat-flat-button color="primary" routerLink="login">Login</button>
+    <button mat-flat-button>Sign Up</button>
   </div>
   <button mat-icon-button (click)="isMenuOpen = !isMenuOpen">
     <mat-icon>menu</mat-icon>
@@ -57,16 +57,18 @@
 
 <div class="features-container">
   <div class="title">
-    <h1>Tailor-made <br />features</h1>
+    <h1>Tailor-made <br class="title-br" />features</h1>
     <h3>
-      Lorem ipsum is common placeholder text used to demonstrate the
-      graphicelements of a document or visual presentation.
+      Lorem ipsum is common placeholder text used to demonstrate the graphic
+      elements of a document or visual presentation.
     </h3>
   </div>
-  <div class="feature" *ngFor="let feature of features">
-    <img [src]="feature.img" />
-    <h1>{{ feature.title }}</h1>
-    <h3>{{ feature.description }}</h3>
+  <div class="items">
+    <div class="feature" *ngFor="let feature of features">
+      <img [src]="feature.img" />
+      <h1>{{ feature.title }}</h1>
+      <h3>{{ feature.description }}</h3>
+    </div>
   </div>
 </div>
 
@@ -75,31 +77,36 @@
     <h1>Our 18 years of achievements</h1>
     <h3>With our super powers we have reached this</h3>
   </div>
-
-  <div class="metric" *ngFor="let metric of metrics">
-    <img [src]="metric.img" />
-    <div>
-      <h1>{{ metric.title }}</h1>
-      <h3>{{ metric.description }}</h3>
+  <div class="items">
+    <div class="metric" *ngFor="let metric of metrics">
+      <img [src]="metric.img" />
+      <div>
+        <h1>{{ metric.title }}</h1>
+        <h3>{{ metric.description }}</h3>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="footer-container">
-  <img class="logo-mark" src="../../assets/home/logo-mark.svg" />
-  <div class="links">
-    <ul>
-      <li><a href="#">Download Now</a></li>
-      <li><a href="#">License</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Features</a></li>
-      <li><a href="#">Pricing</a></li>
-      <li><a href="#">News</a></li>
-      <li><a href="#">Help</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+  <div>
+    <img class="logo-mark" src="../../assets/home/logo-mark.svg" />
+    <div class="links">
+      <ul>
+        <div class="first-row">
+          <li><a href="#">Download Now</a></li>
+          <li><a href="#">License</a></li>
+        </div>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Help</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <p>© 2021 Landify UI Kit. All rights reserved</p>
   </div>
-  <p>© 2021 Landify UI Kit. All rights reserved</p>
   <div class="download-badges">
     <span>Get the App</span>
     <a href="#"><img src="../../assets/home/app-store.svg" /></a>

@@ -39,10 +39,18 @@ tr.element-row:not(.expanded-row):active {
   }
 }
 
-.create-post {
+.post-actions {
   width: 20%;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 2rem;
+}
+
+.delete-posts {
+  background-color: firebrick;
+  color: white;
+  margin-top: 1rem;
 }
 
 .no-posts {

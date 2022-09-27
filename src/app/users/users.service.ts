@@ -16,4 +16,12 @@ export class UsersService {
       `https://jsonplaceholder.typicode.com/users/${userId}/posts`
     );
   }
+
+  createPost(title: string, description: string, userId: number) {
+    return this.http.post('https://jsonplaceholder.typicode.com/posts', {
+      title,
+      body: description,
+      userId,
+    });
+  }
 }

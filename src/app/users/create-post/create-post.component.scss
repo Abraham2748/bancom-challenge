@@ -1,0 +1,29 @@
+.dialog-container {
+  position: relative;
+  padding: 3rem;
+  width: 600px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+h1 {
+  padding: 1rem 0;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.save-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+  .save {
+    width: 16rem;
+  }
+}

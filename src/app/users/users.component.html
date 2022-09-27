@@ -63,12 +63,34 @@
                 <h3>{{ post.body }}</h3>
               </div>
             </div>
-            <div class="create-post">
-              <button mat-flat-button color="primary">Create a post</button>
+            <div
+              class="post-actions"
+              *ngIf="element.posts && element.posts.length > 0"
+            >
+              <ng-template [ngTemplateOutlet]="btnCreatePost"></ng-template>
+
+              <button
+                mat-flat-button
+                class="delete-posts"
+                (click)="deletePosts(element)"
+              >
+                Delete Posts
+              </button>
             </div>
-            <ng-template class="no-posts" #noPosts>
-              <span>No posts yet</span>
-              <button mat-flat-button color="primary">Create a post</button>
+            <ng-template #noPosts>
+              <div class="no-posts">
+                <span>No posts yet</span>
+                <ng-template [ngTemplateOutlet]="btnCreatePost"></ng-template>
+              </div>
+            </ng-template>
+            <ng-template #btnCreatePost>
+              <button
+                mat-flat-button
+                color="primary"
+                (click)="createPost(element)"
+              >
+                Create a post
+              </button>
             </ng-template>
           </ng-template>
         </div>

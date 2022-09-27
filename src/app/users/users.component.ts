@@ -7,6 +7,8 @@ import {
   trigger,
 } from '@angular/animations';
 import { UsersService } from './users.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 @Component({
   selector: 'app-users',
@@ -25,7 +27,7 @@ export class UsersComponent implements OnInit {
   columnsToDisplay = ['name', 'username', 'address', 'email', 'phone'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: Element | undefined;
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.usersService.getUsers().subscribe((users: any) => {
@@ -52,6 +54,25 @@ export class UsersComponent implements OnInit {
         element.loadedPosts = true;
       }, 500);
     });
+  }
+
+  createPost(element: any) {
+    this.dialog
+      .open(CreatePostComponent, { disableClose: true })
+      .afterClosed()
+      .subscribe((post) => {
+        if (!post) return;
+        this.usersService
+          .createPost(post.title, post.description, element.userId)
+          .subscribe((res) => {
+            element.posts.push(res);
+          });
+      });
+    return;
+  }
+
+  deletePosts(element: any) {
+    element.posts = [];
   }
 }
 

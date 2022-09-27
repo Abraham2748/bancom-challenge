@@ -20,7 +20,8 @@
           aria-label="expand row"
           (click)="
             expandedElement = expandedElement === element ? null : element;
-            $event.stopPropagation()
+            $event.stopPropagation();
+            loadPosts(expandedElement)
           "
         >
           <mat-icon *ngIf="expandedElement !== element"
@@ -46,16 +47,52 @@
             element == expandedElement ? 'expanded' : 'collapsed'
           "
         >
-          <div class="element-diagram">
-            <div class="element-position">{{ element.position }}</div>
-            <div class="element-symbol">{{ element.symbol }}</div>
-            <div class="element-name">{{ element.name }}</div>
-            <div class="element-weight">{{ element.weight }}</div>
+          <div
+            class="loading no-posts"
+            *ngIf="element && !element.loadedPosts; else detail"
+          >
+            <span> <i>Loading...</i> </span>
           </div>
-          <div class="element-description">
-            {{ element.description }}
-            <span class="element-description-attribution"> -- Wikipedia </span>
-          </div>
+          <ng-template #detail>
+            <div
+              *ngIf="element.posts && element.posts.length > 0; else noPosts"
+              class="post-list"
+            >
+              <div *ngFor="let post of element.posts" class="post-item">
+                <h1>{{ post.title }}</h1>
+                <h3>{{ post.body }}</h3>
+              </div>
+            </div>
+            <div
+              class="post-actions"
+              *ngIf="element.posts && element.posts.length > 0"
+            >
+              <ng-template [ngTemplateOutlet]="btnCreatePost"></ng-template>
+
+              <button
+                mat-flat-button
+                class="delete-posts"
+                (click)="deletePosts(element)"
+              >
+                Delete Posts
+              </button>
+            </div>
+            <ng-template #noPosts>
+              <div class="no-posts">
+                <span>No posts yet</span>
+                <ng-template [ngTemplateOutlet]="btnCreatePost"></ng-template>
+              </div>
+            </ng-template>
+            <ng-template #btnCreatePost>
+              <button
+                mat-flat-button
+                color="primary"
+                (click)="createPost(element)"
+              >
+                Create a post
+              </button>
+            </ng-template>
+          </ng-template>
         </div>
       </td>
     </ng-container>
@@ -66,7 +103,10 @@
       *matRowDef="let element; columns: columnsToDisplayWithExpand"
       class="element-row"
       [class.expanded-row]="expandedElement === element"
-      (click)="expandedElement = expandedElement === element ? null : element"
+      (click)="
+        expandedElement = expandedElement === element ? null : element;
+        loadPosts(expandedElement)
+      "
     ></tr>
     <tr
       mat-row

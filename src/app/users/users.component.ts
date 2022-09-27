@@ -6,6 +6,9 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { UsersService } from './users.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 @Component({
   selector: 'app-users',
@@ -20,66 +23,66 @@ import {
   ],
 })
 export class UsersComponent implements OnInit {
-  dataSource = ELEMENT_DATA;
-  columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
+  dataSource: any;
+  columnsToDisplay = ['name', 'username', 'address', 'email', 'phone'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: Element | undefined;
-  constructor() {}
+  constructor(private usersService: UsersService, private dialog: MatDialog) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.usersService.getUsers().subscribe((users: any) => {
+      this.dataSource = users.map((user: any) => {
+        return {
+          id: user.id,
+          name: user.name,
+          username: user.username,
+          address: `${user.address.street}, ${user.address.suite}, ${user.address.city}`,
+          email: user.email,
+          phone: user.phone,
+          posts: null,
+          loadedPosts: false,
+        };
+      });
+    });
+  }
+
+  loadPosts(element: any) {
+    if (!element || element.posts !== null) return;
+    this.usersService.getPosts(element.id).subscribe((posts: any) => {
+      setTimeout(() => {
+        element.posts = posts;
+        element.loadedPosts = true;
+      }, 500);
+    });
+  }
+
+  createPost(element: any) {
+    this.dialog
+      .open(CreatePostComponent, { disableClose: true })
+      .afterClosed()
+      .subscribe((post) => {
+        if (!post) return;
+        this.usersService
+          .createPost(post.title, post.description, element.userId)
+          .subscribe((res) => {
+            element.posts.push(res);
+          });
+      });
+    return;
+  }
+
+  deletePosts(element: any) {
+    element.posts = [];
+  }
 }
 
 export interface Element {
+  id: number;
   name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  description: string;
+  username: string;
+  address: string;
+  email: string;
+  phone: string;
+  posts: Array<Object>;
+  loadedPosts: boolean;
 }
-
-const ELEMENT_DATA: Element[] = [
-  {
-    position: 1,
-    name: 'Hydrogen',
-    weight: 1.0079,
-    symbol: 'H',
-    description: `Hydrogen is a chemical element with symbol H and atomic number 1. With a standard
-        atomic weight of 1.008, hydrogen is the lightest element on the periodic table.`,
-  },
-  {
-    position: 2,
-    name: 'Helium',
-    weight: 4.0026,
-    symbol: 'He',
-    description: `Helium is a chemical element with symbol He and atomic number 2. It is a
-        colorless, odorless, tasteless, non-toxic, inert, monatomic gas, the first in the noble gas
-        group in the periodic table. Its boiling point is the lowest among all the elements.`,
-  },
-  {
-    position: 3,
-    name: 'Lithium',
-    weight: 6.941,
-    symbol: 'Li',
-    description: `Lithium is a chemical element with symbol Li and atomic number 3. It is a soft,
-        silvery-white alkali metal. Under standard conditions, it is the lightest metal and the
-        lightest solid element.`,
-  },
-  {
-    position: 4,
-    name: 'Beryllium',
-    weight: 9.0122,
-    symbol: 'Be',
-    description: `Beryllium is a chemical element with symbol Be and atomic number 4. It is a
-        relatively rare element in the universe, usually occurring as a product of the spallation of
-        larger atomic nuclei that have collided with cosmic rays.`,
-  },
-  {
-    position: 5,
-    name: 'Boron',
-    weight: 10.811,
-    symbol: 'B',
-    description: `Boron is a chemical element with symbol B and atomic number 5. Produced entirely
-        by cosmic ray spallation and supernovae and not by stellar nucleosynthesis, it is a
-        low-abundance element in the Solar system and in the Earth's crust.`,
-  },
-];

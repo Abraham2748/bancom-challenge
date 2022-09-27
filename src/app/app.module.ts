@@ -13,9 +13,12 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './users/users.component';
 import { MatTableModule } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CreatePostComponent } from './users/create-post/create-post.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent, UsersComponent],
+  declarations: [AppComponent, HomeComponent, LoginComponent, UsersComponent, CreatePostComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,6 +30,8 @@ import { MatTableModule } from '@angular/material/table';
     FormsModule,
     ReactiveFormsModule,
     MatTableModule,
+    HttpClientModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

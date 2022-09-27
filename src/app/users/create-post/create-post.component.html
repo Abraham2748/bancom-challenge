@@ -1,0 +1,43 @@
+<form class="dialog-container">
+  <mat-icon mat-dialog-close class="close">close</mat-icon>
+  <h1 mat-dialog-title>Create Post</h1>
+  <div mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input type="text" matInput [formControl]="title" />
+      <mat-error *ngIf="description.hasError('minlength')">
+        Description should be at least <strong>5</strong> characters
+      </mat-error>
+      <mat-error *ngIf="title.hasError('required')">
+        Title is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input type="text" matInput [formControl]="description" />
+      <mat-error *ngIf="description.hasError('minlength')">
+        Description should be at least <strong>10</strong> characters
+      </mat-error>
+      <mat-error *ngIf="description.hasError('required')">
+        Description is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="save-container">
+    <button
+      type="submit"
+      mat-button
+      mat-flat-button
+      color="primary"
+      [mat-dialog-close]="{
+        title: title.value,
+        description: description.value
+      }"
+      class="save"
+      [disabled]="title.errors || description.errors"
+    >
+      Save
+    </button>
+  </div>
+</form>

@@ -8,19 +8,53 @@ table {
   width: 80%;
 }
 
+th {
+  background-color: #808692;
+  color: white;
+}
+
 tr.detail-row {
   height: 0;
 }
 
 tr.element-row:not(.expanded-row):hover {
-  background: whitesmoke;
+  background: #eee;
 }
 
 tr.element-row:not(.expanded-row):active {
-  background: #efefef;
+  background: lightgray;
 }
 
 .element-detail {
   overflow: hidden;
   display: flex;
+}
+
+.post-list {
+  width: 80%;
+  max-height: 300px;
+  overflow: scroll;
+  .post-item {
+    margin: 2rem 0;
+  }
+}
+
+.create-post {
+  width: 20%;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.no-posts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  height: 8rem;
+
+  span {
+    font-size: 1rem;
+  }
 }

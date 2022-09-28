@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   animate,
   state,
@@ -9,6 +9,8 @@ import {
 import { UsersService } from './users.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { UserIdleService } from 'angular-user-idle';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -22,14 +24,36 @@ import { CreatePostComponent } from './create-post/create-post.component';
     ]),
   ],
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
   dataSource: any;
   columnsToDisplay = ['name', 'username', 'address', 'email', 'phone'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: Element | undefined;
-  constructor(private usersService: UsersService, private dialog: MatDialog) {}
+  constructor(
+    private usersService: UsersService,
+    private dialog: MatDialog,
+    private userIdle: UserIdleService,
+    private router: Router
+  ) {}
+
+  ngOnDestroy(): void {
+    this.userIdle.stopTimer();
+    this.userIdle.stopWatching();
+  }
+
+  handleUserIdle() {
+    //Start watching for user inactivity.
+    this.userIdle.startWatching();
+
+    this.userIdle.onTimerStart().subscribe(() => {
+      this.router.navigate(['']);
+      sessionStorage.removeItem('user_data');
+    });
+  }
 
   ngOnInit(): void {
+    this.handleUserIdle();
+
     this.usersService.getUsers().subscribe((users: any) => {
       this.dataSource = users.map((user: any) => {
         return {

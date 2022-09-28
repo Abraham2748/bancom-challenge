@@ -55,6 +55,7 @@
           color="primary"
           [disabled]="email.errors || password.errors"
           routerLink="../users"
+          (click)="saveUserData()"
         >
           Login
         </button>

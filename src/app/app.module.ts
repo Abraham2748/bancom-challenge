@@ -16,9 +16,16 @@ import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CreatePostComponent } from './users/create-post/create-post.component';
+import { UserIdleModule } from 'angular-user-idle';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent, UsersComponent, CreatePostComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+    UsersComponent,
+    CreatePostComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,6 +39,7 @@ import { CreatePostComponent } from './users/create-post/create-post.component';
     MatTableModule,
     HttpClientModule,
     MatDialogModule,
+    UserIdleModule.forRoot({ idle: 900 }),
   ],
   providers: [],
   bootstrap: [AppComponent],

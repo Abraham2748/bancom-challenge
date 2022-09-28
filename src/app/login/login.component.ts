@@ -18,4 +18,11 @@ export class LoginComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  saveUserData() {
+    sessionStorage.setItem(
+      'user_data',
+      JSON.stringify({ email: this.email.value, password: this.password.value })
+    );
+  }
 }
